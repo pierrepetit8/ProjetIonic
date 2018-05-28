@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Randonnées</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let randonnee of randoList" (click)="clickDetails(randonnee)">
+        <randonnee-component [randonnee] = randonnee></randonnee-component>
+    </button>
+  </ion-list>
+
+</ion-content>
