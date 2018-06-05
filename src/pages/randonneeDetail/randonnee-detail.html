@@ -1,9 +1,24 @@
-<div>
-    <h1>{{randonnee.titre}}</h1>
-    <span>{{randonnee.note}}</span>
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Randonnée</ion-title>
+    </ion-navbar>
+</ion-header>
 
-    <ion-icon name="ios-pin-outline"></ion-icon><span>{{randonnee.adresse}}</span>
 
-    <ion-icon name="ios-time-outline"></ion-icon><span> {{randonnee.duree}} </span>
-    <span>{{randonnee.denivele}}</span>
-</div>
+<ion-content>
+    <div>
+        <h1>{{randonnee.titre}}</h1>
+        <span>{{randonnee.note}}</span>
+
+        <ion-icon name="ios-pin-outline"></ion-icon><span>{{randonnee.adresse}}</span>
+
+        <ion-icon name="ios-time-outline"></ion-icon><span> {{randonnee.duree}} </span>
+        <span>{{randonnee.denivele}}</span>
+    </div>
+    <div #map id="map"></div>
+</ion-content>
+
+
