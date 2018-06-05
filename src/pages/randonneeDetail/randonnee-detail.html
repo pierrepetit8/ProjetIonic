@@ -18,6 +18,9 @@
         <ion-icon name="ios-time-outline"></ion-icon><span> {{randonnee.duree}} </span>
         <span>{{randonnee.denivele}}</span>
     </div>
+    <div>
+        <button ion-button secondary (click)="startRando()">Demarrer randonnée</button>
+    </div>
     <div #map id="map"></div>
 </ion-content>
 

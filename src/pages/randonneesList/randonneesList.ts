@@ -28,7 +28,9 @@ export class RandonneesList {
             adresse : "Adresse, Ici",
             urlImage : "",
             depLat: 47.069365,
-            depLong: 2.385255
+            depLong: 2.385255,
+            arrLat: 47.326295,
+            arrLong: 2.816887,
         },
         {
             titre : 'Label ranbdonnée2',
@@ -39,7 +41,9 @@ export class RandonneesList {
             adresse : "Adresse, Ici",
             urlImage : "",
             depLat: 47.069365,
-            depLong: 2.385255
+            depLong: 2.385255,
+            arrLat: 47.326295,
+            arrLong: 2.816887,
         });
     }
 

@@ -8,4 +8,6 @@ export class Randonnee {
     urlImage: string;
     depLat: number;
     depLong: number;
+    arrLat: number;
+    arrLong: number;
 }
