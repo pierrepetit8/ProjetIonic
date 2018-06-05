@@ -6,4 +6,6 @@ export class Randonnee {
     note: number;
     adresse: string;
     urlImage: string;
+    depLat: number;
+    depLong: number;
 }

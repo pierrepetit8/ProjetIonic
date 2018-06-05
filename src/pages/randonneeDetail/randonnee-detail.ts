@@ -20,8 +20,8 @@ export class RandonneeDetail {
       }
      
     loadMap(){
-        let latLng = new google.maps.LatLng(-34.9290, 138.6010);
-    
+        let latLng = new google.maps.LatLng(this.randonnee.depLat, this.randonnee.depLong);
+         
         let mapOptions = {
             center: latLng,
             zoom: 15,
@@ -29,5 +29,9 @@ export class RandonneeDetail {
         }
         
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        var marker = new google.maps.Marker({
+            position: latLng,
+            map: this.map
+          });
     }
 }

@@ -26,7 +26,9 @@ export class RandonneesList {
             denivele : 10,
             note : 5,
             adresse : "Adresse, Ici",
-            urlImage : ""
+            urlImage : "",
+            depLat: 47.069365,
+            depLong: 2.385255
         },
         {
             titre : 'Label ranbdonnée2',
@@ -35,7 +37,9 @@ export class RandonneesList {
             denivele : 10,
             note : 5,
             adresse : "Adresse, Ici",
-            urlImage : ""
+            urlImage : "",
+            depLat: 47.069365,
+            depLong: 2.385255
         });
     }
 
