@@ -1,6 +1,7 @@
-import {Component, Input, ViewChild, ElementRef} from "@angular/core";
+import {Component, ViewChild, ElementRef} from "@angular/core";
 import {Randonnee} from "../../app/randonnee";
 import {NavParams} from "ionic-angular";
+import {Geolocation} from '@ionic-native/geolocation';
 
 declare var google;
 @Component({
@@ -9,17 +10,17 @@ declare var google;
 })
 export class RandonneeDetail {
     public randonnee: Randonnee;
+    public geolocation = new Geolocation();
+    public directionsService = new google.maps.DirectionsService();
     @ViewChild('map') mapElement: ElementRef;
     map: any;
-    public directionsService = new google.maps.DirectionsService();
-
     constructor(public params: NavParams) {
         this.randonnee = this.params.get("randonnee");
     }
     
     ionViewDidLoad(){
         this.loadMap();
-      }
+    }
      
     loadMap(){
         let latLngDep = new google.maps.LatLng(this.randonnee.depLat, this.randonnee.depLong);
@@ -42,6 +43,22 @@ export class RandonneeDetail {
             if (status == 'OK') {
               directionsDisplay.setDirections(response);
             }
-          });
+        });
+    }
+    startRando() {
+        var infoWindow = new google.maps.InfoWindow({map: this.map});
+        let watch = this.geolocation.watchPosition();
+        watch.subscribe((data) => {
+            let position = {
+                lat: data.coords.latitude,
+                lng: data.coords.longitude
+            }
+            console.log(data.coords.longitude);
+            console.log(data.coords.latitude);
+            infoWindow.setPosition(position);
+            infoWindow.setContent('Location found.');
+            this.map.setCenter(position);
+        });
+        
     }
 }
