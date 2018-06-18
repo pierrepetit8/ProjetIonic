@@ -37,7 +37,7 @@ export class RandonneesList {
             description : "Ceci est la description",
             duree : 1.30,
             denivele : 10,
-            note : 5,
+            note : 2,
             adresse : "Adresse, Ici",
             urlImage : "",
             depLat: 47.069365,
