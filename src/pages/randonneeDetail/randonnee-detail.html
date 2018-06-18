@@ -7,21 +7,47 @@
     </ion-navbar>
 </ion-header>
 
-
 <ion-content>
-    <div>
-        <h1>{{randonnee.titre}}</h1>
-        <span>{{randonnee.note}}</span>
+    <ion-card>
+        <ion-card-header text-center>
+            <h2>{{randonnee.titre}}</h2>
+            <div>
+                <ion-icon name="star" *ngIf="randonnee.note > 0"></ion-icon>
+                <ion-icon name="star" *ngIf="randonnee.note > 1"></ion-icon>
+                <ion-icon name="star" *ngIf="randonnee.note > 2"></ion-icon>
+                <ion-icon name="star" *ngIf="randonnee.note > 3"></ion-icon>
+                <ion-icon name="star" *ngIf="randonnee.note > 4"></ion-icon>
+            </div>
+        </ion-card-header>
 
-        <ion-icon name="ios-pin-outline"></ion-icon><span>{{randonnee.adresse}}</span>
-
-        <ion-icon name="ios-time-outline"></ion-icon><span> {{randonnee.duree}} </span>
-        <span>{{randonnee.denivele}}</span>
-    </div>
-    <div>
-        <button ion-button secondary (click)="startRando()">Demarrer randonnée</button>
-    </div>
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col text-right>
+                                <ion-icon name="ios-pin-outline"></ion-icon>
+                            </ion-col>
+                            <ion-col><span>{{randonnee.adresse}}</span></ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col text-right>
+                                <ion-icon name="ios-time-outline"></ion-icon>
+                            </ion-col>
+                            <ion-col><span>{{randonnee.duree}}</span></ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col text-right>
+                                <ion-icon name="ios-trending-up-outline"></ion-icon>
+                            </ion-col>
+                            <ion-col><span>{{randonnee.denivele}}</span></ion-col>
+                        </ion-row>
+                    </ion-grid>
+                    <button ion-button secondary (click)="startRando()">Demarrer randonnée</button>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
     <div #map id="map"></div>
 </ion-content>
-
 
