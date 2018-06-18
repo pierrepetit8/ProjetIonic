@@ -10,4 +10,5 @@ export class Randonnee {
     depLong: number;
     arrLat: number;
     arrLong: number;
+    restant: string;
 }

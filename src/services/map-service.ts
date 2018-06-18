@@ -39,16 +39,17 @@ export class MapService {
         let destination = [];
         origin.push(new google.maps.LatLng(position.latitude, position.longitude));
         destination.push(new google.maps.LatLng(randonnee.arrLat, randonnee.arrLong));
-        this.distanceService.getDistanceMatrix(
+        return this.distanceService.getDistanceMatrix(
             {
               origins: origin,
               destinations: destination,
               travelMode: 'WALKING',
-            }, this.callback);
+            }, function(response, status) {
+                return response.rows[0].elements[0].distance.text;
+            });
     } 
     callback(response, status) {
-        console.log(response);
-        this.distance = response.rows[0].elements[0].distance.text;
+        return response.rows[0].elements[0].distance.text;
     }
 
 }

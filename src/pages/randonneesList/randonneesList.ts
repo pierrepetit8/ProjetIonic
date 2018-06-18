@@ -31,6 +31,7 @@ export class RandonneesList {
             depLong: 2.385255,
             arrLat: 47.326295,
             arrLong: 2.816887,
+            restant: ''
         },
         {
             titre : 'Label ranbdonnée2',
@@ -44,6 +45,7 @@ export class RandonneesList {
             depLong: 2.385255,
             arrLat: 47.326295,
             arrLong: 2.816887,
+            restant: ''
         });
     }
 
