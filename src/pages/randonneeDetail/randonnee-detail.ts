@@ -1,8 +1,9 @@
 import {Component, ViewChild, ElementRef} from "@angular/core";
 import {Randonnee} from "../../app/randonnee";
-import {NavParams} from "ionic-angular";
+import {NavParams, NavController} from "ionic-angular";
 import {Geolocation} from '@ionic-native/geolocation';
-
+import {MapService} from '../../services/map-service'
+import { RandonneeEnCours } from "../randonneEnCours/randonnee-en-cours";
 declare var google;
 @Component({
     selector: "RandonneeDetail",
@@ -10,11 +11,10 @@ declare var google;
 })
 export class RandonneeDetail {
     public randonnee: Randonnee;
-    public geolocation = new Geolocation();
     public directionsService = new google.maps.DirectionsService();
+    public map;
     @ViewChild('map') mapElement: ElementRef;
-    map: any;
-    constructor(public params: NavParams) {
+    constructor(public params: NavParams, public navCtrl: NavController, public mapService: MapService) {
         this.randonnee = this.params.get("randonnee");
     }
     
@@ -23,46 +23,10 @@ export class RandonneeDetail {
     }
      
     loadMap(){
-        let steps = [];
-        steps.push({
-            location: new google.maps.LatLng(48.856741, 2.312720),
-            stopover: true
-        });
-        let latLngDep = new google.maps.LatLng(this.randonnee.depLat, this.randonnee.depLong);
-        let latLngArr = new google.maps.LatLng(this.randonnee.arrLat, this.randonnee.arrLong);
-        let directionsDisplay = new google.maps.DirectionsRenderer();
-        let mapOptions = {
-            center: latLngDep,
-            zoom: 7,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-        }
-        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-        directionsDisplay.setMap(this.map);
-
-        let optionsTravel = {
-            origin: latLngDep,
-            destination: latLngArr,
-            travelMode: 'WALKING',
-            waypoints: steps
-        }
-        this.directionsService.route(optionsTravel, function(response, status) {
-            if (status == 'OK') {
-              directionsDisplay.setDirections(response);
-            }
-        });
+        this.map = this.mapService.generateMap(this.mapElement, { lat: this.randonnee.depLat, lgn: this.randonnee.depLong }, { lat: this.randonnee.arrLat, lng: this.randonnee.arrLong});
     }
 
     startRando() {
-        var infoWindow = new google.maps.InfoWindow({map: this.map});
-        let watch = this.geolocation.watchPosition();
-        watch.subscribe((data) => {
-            let position = {
-                lat: data.coords.latitude,
-                lng: data.coords.longitude
-            }
-            infoWindow.setPosition(position);
-            infoWindow.setContent('Votre position');
-            this.map.setCenter(position);
-        });
+        this.navCtrl.push(RandonneeEnCours, {randonnee: this.randonnee, map: this.map});
     }
 }

@@ -11,6 +11,8 @@ import { RandonneeDetail } from '../pages/randonneeDetail/randonnee-detail';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { MapService } from '../services/map-service';
+import { RandonneeEnCours } from '../pages/randonneEnCours/randonnee-en-cours';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     RandonneeComponent,
     RandonneeDetail,
-    RandonneesList
+    RandonneesList,
+    RandonneeEnCours
   ],
   imports: [
     BrowserModule,
@@ -32,10 +35,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     RandonneeComponent,
     RandonneeDetail,
-    RandonneesList
+    RandonneesList,
+    RandonneeEnCours
   ],
   providers: [
     StatusBar,
+    MapService,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
