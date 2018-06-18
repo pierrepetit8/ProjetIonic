@@ -5,6 +5,8 @@ declare var google;
 @Injectable()
 export class MapService {
     public directionsService = new google.maps.DirectionsService();
+    public distanceService = new google.maps.DistanceMatrixService();
+    public distance = 'salut';
     constructor() { 
        
     }
@@ -32,8 +34,21 @@ export class MapService {
         return map;
     }
 
-    bindMap(mapToBind: ElementRef, randonne: Randonnee) {
-        
+    getDistanceToFinish(position: any, randonnee: Randonnee) {
+        let origin = [];
+        let destination = [];
+        origin.push(new google.maps.LatLng(position.latitude, position.longitude));
+        destination.push(new google.maps.LatLng(randonnee.arrLat, randonnee.arrLong));
+        this.distanceService.getDistanceMatrix(
+            {
+              origins: origin,
+              destinations: destination,
+              travelMode: 'WALKING',
+            }, this.callback);
+    } 
+    callback(response, status) {
+        console.log(response);
+        this.distance = response.rows[0].elements[0].distance.text;
     }
 
 }
