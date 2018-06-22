@@ -13,6 +13,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MapService } from '../services/map-service';
 import { RandonneeEnCours } from '../pages/randonneEnCours/randonnee-en-cours';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { RestProvider } from '../providers/rest/rest';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { RandonneeEnCours } from '../pages/randonneEnCours/randonnee-en-cours';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+      HttpClientModule,
+      IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,7 +45,8 @@ import { RandonneeEnCours } from '../pages/randonneEnCours/randonnee-en-cours';
     StatusBar,
     MapService,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    RestProvider
   ]
 })
 export class AppModule {}

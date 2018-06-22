@@ -23,7 +23,6 @@ export class RandonneeEnCours {
         var infoWindow = new google.maps.InfoWindow({map: mapToChange});
         let watch = this.geolocation.watchPosition();
         watch.subscribe((data) => {
-            console.log('position' + data.coords.latitude)
             let position = {
                 lat: data.coords.latitude,
                 lng: data.coords.longitude
@@ -32,7 +31,6 @@ export class RandonneeEnCours {
             infoWindow.setContent('Votre position');
             this.map.setCenter(position);
             this.mapService.getDistanceToFinish(data.coords, this.randonnee)
-            console.log(this.mapService.distance);
         });
     }
 

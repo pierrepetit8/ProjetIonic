@@ -10,12 +10,12 @@ const url = "https://geo.data.gouv.fr/api/geogw/file-packages/330f16f0c3db9aeaee
 
 @Injectable()
 export class DataService {
-    constructor(private http:HttpClient) {
+    constructor(public http:HttpClient) {
 
     }
 
     getRandonnee() {
         let jsonResponse = this.http.get(url);
-
+        console.log(jsonResponse);
     }
 }

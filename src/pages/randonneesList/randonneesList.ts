@@ -6,6 +6,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { RandonneeComponent } from '../randonnee/randonnee.component';
 import { Randonnee } from '../../app/randonnee';
 import {RandonneeDetail} from "../randonneeDetail/randonnee-detail";
+import {RestProvider} from "../../providers/rest/rest";
 
 @Component({
     selector: 'page-randonnee',
@@ -15,10 +16,16 @@ export class RandonneesList {
     selectedItem: any;
     randoList: Array<Randonnee>;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
         this.selectedItem = navParams.get('randonnee');
 
         this.randoList = [];
+
+        restProvider.getData().then(data => {
+            this.randoList = restProvider.transformData(data);
+            console.log(this.randoList[0]);
+        }).catch(err => {console.log(err)});
+
         this.randoList.push({
             titre : 'Label ranbdonnée1',
             description : "Ceci est la description",
@@ -31,6 +38,7 @@ export class RandonneesList {
             depLong: 2.385255,
             arrLat: 47.326295,
             arrLong: 2.816887,
+            etapes: [],
         },
         {
             titre : 'Label ranbdonnée2',
@@ -44,6 +52,7 @@ export class RandonneesList {
             depLong: 2.385255,
             arrLat: 47.326295,
             arrLong: 2.816887,
+            etapes: [],
         });
     }
 

@@ -47,7 +47,6 @@ export class MapService {
             }, this.callback);
     } 
     callback(response, status) {
-        console.log(response);
         this.distance = response.rows[0].elements[0].distance.text;
     }
 
