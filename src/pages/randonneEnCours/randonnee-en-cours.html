@@ -1,8 +1,5 @@
 <ion-header>
     <ion-navbar>
-        <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-        </button>
         <ion-title>Randonnée en cours</ion-title>
     </ion-navbar>
 </ion-header>
@@ -18,4 +15,10 @@
     <div #map id="map"></div>
 </ion-content>
 
+<ion-footer>
+    <ion-toolbar>
+      <ion-title>Temps: {{timerService.finalTime}}</ion-title>
+      <button ion-button color="danger" (click)="stopTimer()">STOP</button>
+    </ion-toolbar>
+  </ion-footer>
 

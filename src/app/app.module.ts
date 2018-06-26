@@ -13,6 +13,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MapService } from '../services/map-service';
 import { RandonneeEnCours } from '../pages/randonneEnCours/randonnee-en-cours';
+import { TimerService } from '../services/timer-service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { RandonneeEnCours } from '../pages/randonneEnCours/randonnee-en-cours';
     RandonneeComponent,
     RandonneeDetail,
     RandonneesList,
-    RandonneeEnCours
+    RandonneeEnCours,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +42,7 @@ import { RandonneeEnCours } from '../pages/randonneEnCours/randonnee-en-cours';
   providers: [
     StatusBar,
     MapService,
+    TimerService,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

@@ -27,8 +27,8 @@ export class RandonneesList {
             note : 5,
             adresse : "Adresse, Ici",
             urlImage : "",
-            depLat: 47.069365,
-            depLong: 2.385255,
+            depLat: 45.762200,
+            depLong: 3.108940,
             arrLat: 47.326295,
             arrLong: 2.816887,
             restant: ''

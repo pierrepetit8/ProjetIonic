@@ -1,8 +1,10 @@
 import {Component, ViewChild, ElementRef} from "@angular/core";
 import {Randonnee} from "../../app/randonnee";
-import {NavParams} from "ionic-angular";
+import {NavParams, NavController} from "ionic-angular";
 import {Geolocation} from '@ionic-native/geolocation';
-import {MapService} from '../../services/map-service'
+import {MapService} from '../../services/map-service';
+import {TimerService} from '../../services/timer-service'
+import { RandonneesList } from "../randonneesList/randonneesList";
 
 declare var google;
 @Component({
@@ -15,16 +17,18 @@ export class RandonneeEnCours {
     public distanceService = new google.maps.DistanceMatrixService();
     public map;
     public restant: string;
+    public temps: string;
     @ViewChild('map') mapElement: ElementRef;
-    constructor(public params: NavParams, public mapService: MapService) {
+    constructor(public params: NavParams, public navCtrl: NavController, public mapService: MapService, public timerService: TimerService) {
         this.randonnee = this.params.get("randonnee");
         this.map = this.params.get("map");
-        this.restant = '';
+        this.temps = '';
     }
     ngOnInit() {
         let mapToChange = this.mapService.generateMap(this.mapElement, { lat: this.randonnee.depLat, lgn: this.randonnee.depLong }, { lat: this.randonnee.arrLat, lng: this.randonnee.arrLong});
         var infoWindow = new google.maps.InfoWindow({map: mapToChange});
         let watch = this.geolocation.watchPosition();
+        this.timerService.start();
         watch.subscribe((data) => {
             console.log('position' + data.coords.latitude)
             let position = {
@@ -49,6 +53,11 @@ export class RandonneeEnCours {
             }, (response, status) => {
                 this.randonnee.restant = response.rows[0].elements[0].distance.text;
             });
-        });
+            console.log(this.timerService.finalTime)
+        }); 
+    }
+    stopTimer() {
+        this.timerService.reset();
+        this.navCtrl.push(RandonneesList);
     }
 }

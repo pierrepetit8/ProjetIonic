@@ -11,6 +11,11 @@ export class MapService {
        
     }
     generateMap(mapToBind: ElementRef, depart: any, arrive: any) {
+        let steps = [];
+        steps.push({
+            location: new google.maps.LatLng(48.856741, 2.312720),
+            stopover: true
+        });
         let latLngDep = new google.maps.LatLng(depart.lat, depart.lgn);
         let latLngArr = new google.maps.LatLng(arrive.lat, arrive.lng);
         let mapOptions = {
@@ -24,7 +29,8 @@ export class MapService {
         let optionsTravel = {
             origin: latLngDep,
             destination: latLngArr,
-            travelMode: 'WALKING'
+            travelMode: 'WALKING',
+            waypoints: steps
         }
         this.directionsService.route(optionsTravel, function(response, status) {
             if (status == 'OK') {
