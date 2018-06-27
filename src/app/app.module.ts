@@ -13,6 +13,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { MapService } from '../services/map-service';
 import { RandonneeEnCours } from '../pages/randonneEnCours/randonnee-en-cours';
 import { TimerService } from '../services/timer-service';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { RestProvider } from '../providers/rest/rest';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { TimerService } from '../services/timer-service';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+      HttpClientModule,
+      IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,7 +44,8 @@ import { TimerService } from '../services/timer-service';
     MapService,
     TimerService,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    RestProvider
   ]
 })
 export class AppModule {}

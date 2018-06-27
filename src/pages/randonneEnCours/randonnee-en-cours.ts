@@ -30,11 +30,11 @@ export class RandonneeEnCours {
         let watch = this.geolocation.watchPosition();
         this.timerService.start();
         watch.subscribe((data) => {
-            console.log('position' + data.coords.latitude)
             let position = {
                 lat: data.coords.latitude,
                 lng: data.coords.longitude
             }
+            console.log(position);
             infoWindow.setPosition(position);
             infoWindow.setContent('Votre position');
             this.map.setCenter(position);
@@ -56,6 +56,7 @@ export class RandonneeEnCours {
         }); 
     }
     stopTimer() {
+        this.timerService.stop();
         this.timerService.reset();
         this.navCtrl.push(RandonneesList);
     }

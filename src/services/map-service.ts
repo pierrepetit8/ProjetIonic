@@ -12,12 +12,12 @@ export class MapService {
     }
     generateMap(mapToBind: ElementRef, depart: any, arrive: any, steps: any) {
         let stepsMap = [];
-        steps.forEach(element => {
-            stepsMap.push({
-                location: new google.maps.LatLng(element.lat, element.lgn),
-                stopover: true
-            });
+
+        stepsMap.push({
+            location: new google.maps.LatLng(steps.lat, steps.lgn),
+            stopover: true
         });
+        console.log(steps);
         let latLngDep = new google.maps.LatLng(depart.lat, depart.lgn);
         let latLngArr = new google.maps.LatLng(arrive.lat, arrive.lng);
         let mapOptions = {

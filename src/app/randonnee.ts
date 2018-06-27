@@ -11,10 +11,8 @@ export class Randonnee {
     arrLat: number;
     arrLong: number;
     restant: string;
-    steps: [
-        {
-            lat: number;
-            lgn: number;   
-        }
-    ]
+    steps: {
+        lat: number,
+        lgn: number;
+    };
 }

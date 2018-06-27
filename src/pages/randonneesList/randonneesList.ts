@@ -6,6 +6,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { RandonneeComponent } from '../randonnee/randonnee.component';
 import { Randonnee } from '../../app/randonnee';
 import {RandonneeDetail} from "../randonneeDetail/randonnee-detail";
+import {RestProvider} from "../../providers/rest/rest";
 
 @Component({
     selector: 'page-randonnee',
@@ -15,50 +16,15 @@ export class RandonneesList {
     selectedItem: any;
     randoList: Array<Randonnee>;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
         this.selectedItem = navParams.get('randonnee');
 
         this.randoList = [];
-        this.randoList.push({
-            titre : 'Label ranbdonnée1',
-            description : "Ceci est la description",
-            duree : 1.30,
-            denivele : 10,
-            note : 5,
-            adresse : "Adresse, Ici",
-            urlImage : "",
-            depLat: 45.762200,
-            depLong: 3.108940,
-            arrLat: 47.326295,
-            arrLong: 2.816887,
-            restant: '',
-            steps: [
-                {
-                    lat: 47.499739,
-                    lgn: 2.002311
-                }
-            ]
-        },
-        {
-            titre : 'Label ranbdonnée2',
-            description : "Ceci est la description",
-            duree : 1.30,
-            denivele : 10,
-            note : 2,
-            adresse : "Adresse, Ici",
-            urlImage : "",
-            depLat: 47.069365,
-            depLong: 2.385255,
-            arrLat: 47.326295,
-            arrLong: 2.816887,
-            restant: '',
-            steps: [
-                {
-                    lat: 47.499739,
-                    lgn: 2.002311
-                }
-            ]
-        });
+
+        restProvider.getData().then(data => {
+            this.randoList = restProvider.transformData(data);
+            console.log(this.randoList[0]);
+        }).catch(err => {console.log(err)});
     }
 
     clickDetails(randonnee) {
