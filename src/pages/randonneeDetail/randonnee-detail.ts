@@ -23,7 +23,7 @@ export class RandonneeDetail {
     }
      
     loadMap(){
-        this.map = this.mapService.generateMap(this.mapElement, { lat: this.randonnee.depLat, lgn: this.randonnee.depLong }, { lat: this.randonnee.arrLat, lng: this.randonnee.arrLong});
+        this.map = this.mapService.generateMap(this.mapElement, { lat: this.randonnee.depLat, lgn: this.randonnee.depLong }, { lat: this.randonnee.arrLat, lng: this.randonnee.arrLong}, this.randonnee.steps);
     }
 
     startRando() {

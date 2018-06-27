@@ -4,7 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { RandonneesList } from '../pages/randonneesList/randonneesList';
 import { RandonneeComponent } from '../pages/randonnee/randonnee.component';
 import { RandonneeDetail } from '../pages/randonneeDetail/randonnee-detail';
@@ -19,7 +18,6 @@ import { TimerService } from '../services/timer-service';
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
     RandonneeComponent,
     RandonneeDetail,
     RandonneesList,
@@ -33,7 +31,6 @@ import { TimerService } from '../services/timer-service';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
     RandonneeComponent,
     RandonneeDetail,
     RandonneesList,

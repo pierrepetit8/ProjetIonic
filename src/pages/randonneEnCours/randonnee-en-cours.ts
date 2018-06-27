@@ -25,7 +25,7 @@ export class RandonneeEnCours {
         this.temps = '';
     }
     ngOnInit() {
-        let mapToChange = this.mapService.generateMap(this.mapElement, { lat: this.randonnee.depLat, lgn: this.randonnee.depLong }, { lat: this.randonnee.arrLat, lng: this.randonnee.arrLong});
+        let mapToChange = this.mapService.generateMap(this.mapElement, { lat: this.randonnee.depLat, lgn: this.randonnee.depLong }, { lat: this.randonnee.arrLat, lng: this.randonnee.arrLong}, this.randonnee.steps);
         var infoWindow = new google.maps.InfoWindow({map: mapToChange});
         let watch = this.geolocation.watchPosition();
         this.timerService.start();
@@ -53,7 +53,6 @@ export class RandonneeEnCours {
             }, (response, status) => {
                 this.randonnee.restant = response.rows[0].elements[0].distance.text;
             });
-            console.log(this.timerService.finalTime)
         }); 
     }
     stopTimer() {

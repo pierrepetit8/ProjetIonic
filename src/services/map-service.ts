@@ -10,11 +10,13 @@ export class MapService {
     constructor() { 
        
     }
-    generateMap(mapToBind: ElementRef, depart: any, arrive: any) {
-        let steps = [];
-        steps.push({
-            location: new google.maps.LatLng(48.856741, 2.312720),
-            stopover: true
+    generateMap(mapToBind: ElementRef, depart: any, arrive: any, steps: any) {
+        let stepsMap = [];
+        steps.forEach(element => {
+            stepsMap.push({
+                location: new google.maps.LatLng(element.lat, element.lgn),
+                stopover: true
+            });
         });
         let latLngDep = new google.maps.LatLng(depart.lat, depart.lgn);
         let latLngArr = new google.maps.LatLng(arrive.lat, arrive.lng);
@@ -30,7 +32,7 @@ export class MapService {
             origin: latLngDep,
             destination: latLngArr,
             travelMode: 'WALKING',
-            waypoints: steps
+            waypoints: stepsMap
         }
         this.directionsService.route(optionsTravel, function(response, status) {
             if (status == 'OK') {

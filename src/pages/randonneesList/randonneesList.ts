@@ -31,7 +31,13 @@ export class RandonneesList {
             depLong: 3.108940,
             arrLat: 47.326295,
             arrLong: 2.816887,
-            restant: ''
+            restant: '',
+            steps: [
+                {
+                    lat: 47.499739,
+                    lgn: 2.002311
+                }
+            ]
         },
         {
             titre : 'Label ranbdonnée2',
@@ -45,7 +51,13 @@ export class RandonneesList {
             depLong: 2.385255,
             arrLat: 47.326295,
             arrLong: 2.816887,
-            restant: ''
+            restant: '',
+            steps: [
+                {
+                    lat: 47.499739,
+                    lgn: 2.002311
+                }
+            ]
         });
     }
 
