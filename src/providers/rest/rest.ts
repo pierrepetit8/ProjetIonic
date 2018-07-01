@@ -41,7 +41,11 @@ export class RestProvider {
             randonnee.steps = {
                 lat: r.geometry.coordinates[Math.ceil((r.geometry.coordinates.length-1)/4)][1],
                 lgn: r.geometry.coordinates[Math.ceil((r.geometry.coordinates.length-1)/4)][0],
-            }
+            };
+            randonnee.denivele = 0;
+            randonnee.duree = 0;
+            randonnee.description = "Description non renseignée";
+            randonnee.note = Math.floor(Math.random() * 5) + 1;
             randonnees.push(randonnee);
         });
         return randonnees;
